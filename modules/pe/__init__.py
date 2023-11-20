@@ -1,7 +1,7 @@
 from utils import hparams
 
 from .pm import ParselmouthPE
-from .pw import HarvestPE, DioPE
+from .pw import HarvestPE
 from .rmvpe import RMVPE
 
 
