@@ -274,16 +274,18 @@ pl_trainer_devices: [0, 1, 2, 3]  # use the first 4 GPUs defined in CUDA_VISIBLE
 
 Please note that `max_batch_size` and `max_batch_frames` are values for **each** GPU.
 
-By default, the trainer uses NCCL as the DDP backend. If this gets stuck on your machine, try disabling P2P via
+By default, the trainer uses NCCL as the DDP backend. If this gets stuck on your machine, try disabling P2P first via
 
 ```yaml
-ddp_backend: nccl_no_p2p  # disable P2P in NCCL
+nccl_p2p: false  # disable P2P in NCCL
 ```
 
 Or if your machine does not support NCCL, you can switch to Gloo instead:
 
 ```yaml
-ddp_backend: gloo  # however, it has a lower performance than NCCL
+pl_trainer_strategy:
+  name: ddp                    # must manually choose a strategy instead of 'auto'
+  process_group_backend: gloo  # however, it has a lower performance than NCCL
 ```
 
 ### Gradient accumulation

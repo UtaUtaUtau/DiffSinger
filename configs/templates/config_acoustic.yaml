@@ -22,23 +22,23 @@ use_spk_id: false
 num_spk: 1
 use_energy_embed: false
 use_breathiness_embed: false
-use_key_shift_embed: false
-use_speed_embed: false
+use_key_shift_embed: true
+use_speed_embed: true
 
 augmentation_args:
   random_pitch_shifting:
-    enabled: false
+    enabled: true
     range: [-5., 5.]
-    scale: 1.0
+    scale: 0.75
   fixed_pitch_shifting:
     enabled: false
     targets: [-5., 5.]
-    scale: 0.75
+    scale: 0.5
   random_time_stretching:
-    enabled: false
+    enabled: true
     range: [0.5, 2.]
     domain: log  # or linear
-    scale: 1.0
+    scale: 0.75
 
 residual_channels: 512
 residual_layers: 20

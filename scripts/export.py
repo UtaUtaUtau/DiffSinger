@@ -71,12 +71,10 @@ def main():
 @click.option('--exp', type=str, required=True, metavar='<exp>', help='Choose an experiment to export.')
 @click.option('--ckpt', type=int, required=False, metavar='<steps>', help='Checkpoint training steps.')
 @click.option('--out', type=str, required=False, metavar='<dir>', help='Output directory for the artifacts.')
-@click.option('--expose_gender', is_flag=True, show_default=True,
-              help='(for random pitch shifting) Expose gender control functionality.')
-@click.option('--freeze_gender', type=float, default=0., show_default=True, metavar='<value>',
+@click.option('--freeze_gender', type=float, metavar='<value>',
               help='(for random pitch shifting) Freeze gender value into the model.')
-@click.option('--expose_velocity', is_flag=True, show_default=True,
-              help='(for random time stretching) Expose velocity control functionality.')
+@click.option('--freeze_velocity', is_flag=True,
+              help='(for random time stretching) Freeze default velocity value into the model.')
 @click.option('--export_spk', type=str, required=False, multiple=True, metavar='<mix>',
               help='(for multi-speaker models) Export one or more speaker or speaker mix keys.')
 @click.option('--freeze_spk', type=str, required=False, metavar='<mix>',
@@ -85,16 +83,12 @@ def acoustic(
         exp: str,
         ckpt: int = None,
         out: str = None,
-        expose_gender: bool = False,
         freeze_gender: float = 0.,
-        expose_velocity: bool = False,
+        freeze_velocity: bool = False,
         export_spk: List[str] = None,
         freeze_spk: str = None
 ):
     # Validate arguments
-    if expose_gender and freeze_gender:
-        print('--expose_gender is exclusive to --freeze_gender.')
-        exit(-1)
     if export_spk and freeze_spk:
         print('--export_spk is exclusive to --freeze_spk.')
         exit(-1)
@@ -124,9 +118,8 @@ def acoustic(
         device=torch.device('cuda' if torch.cuda.is_available() else 'cpu'),
         cache_dir=root_dir / 'deployment' / 'cache',
         ckpt_steps=ckpt,
-        expose_gender=expose_gender,
         freeze_gender=freeze_gender,
-        expose_velocity=expose_velocity,
+        freeze_velocity=freeze_velocity,
         export_spk=export_spk_mix,
         freeze_spk=freeze_spk_mix
     )
