@@ -1,5 +1,8 @@
 # DiffSinger (OpenVPI maintained version)
 
+# Note
+## This fork was made for the implementation of Harvest. Since the pull request of this fork has been merged into the upstream repository, this will be out of maintenance in favor of using the OpenVPI fork. You're only here for the Harvest PE after all. It's in the main version now so you don't have to worry :)
+
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2105.02446)
 [![downloads](https://img.shields.io/github/downloads/openvpi/DiffSinger/total.svg)](https://github.com/openvpi/DiffSinger/releases)
 [![Bilibili](https://img.shields.io/badge/Bilibili-Demo-blue)](https://www.bilibili.com/video/BV1be411N7JA/)
